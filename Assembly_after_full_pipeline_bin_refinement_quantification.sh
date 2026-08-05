@@ -99,18 +99,18 @@ for sra_id in $(cat sra_ids_leukemia_control_leukemia_v1_save); do
     SFQ=$MAGSdir/sortedFQ
     ######## Binning###########
     f="${MAGSdir}/metawrap/trimmed_scaffolds/${sra_id}_scaffolds_trimmed.fasta"
-    # a=$(basename "${f}")
-    # b=$(dirname "${f}")
-    # c=$(echo ${a} | cut -d_ -f1)
-    # metawrap binning -t 13 --metabat2 --maxbin2 -a ${f} -o $MAGSdir/metawrap/bins/${c}_bins \
-    # $SFQ/${c}_sorted_1.fastq $SFQ/${c}_sorted_2.fastq > ${sra_id}_metawrap_binning_log.txt
+     a=$(basename "${f}")
+     b=$(dirname "${f}")
+     c=$(echo ${a} | cut -d_ -f1)
+     metawrap binning -t 13 --metabat2 --maxbin2 -a ${f} -o $MAGSdir/metawrap/bins/${c}_bins \
+     $SFQ/${c}_sorted_1.fastq $SFQ/${c}_sorted_2.fastq > ${sra_id}_metawrap_binning_log.txt
 
     # ### ########Bin refinement##################
     module load checkm/1.0.18
     cd $MAGSdir/metawrap/
-    # g="${MAGSdir}/metawrap/bins/${sra_id}_bins"
-    # a=$(basename "${g}")
-    # metawrap bin_refinement -c 50 -x 10 -t 13 -o $MAGSdir/metawrap/refinement/${a}_refined -A ${g}/metabat2_bins -B ${g}/maxbin2_bins > ${sra_id}_metawrap_refinement_log.txt
+     g="${MAGSdir}/metawrap/bins/${sra_id}_bins"
+     a=$(basename "${g}")
+     metawrap bin_refinement -c 50 -x 10 -t 13 -o $MAGSdir/metawrap/refinement/${a}_refined -A ${g}/metabat2_bins -B ${g}/maxbin2_bins > ${sra_id}_metawrap_refinement_log.txt
 
 
     ## ########Bin quantification##############
